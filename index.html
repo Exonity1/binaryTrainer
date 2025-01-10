@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary to Decimal Trainer</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        .binary-number {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .input-field {
+            font-size: 1.5em;
+            padding: 10px;
+            width: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="binary-number" id="binaryNumber"></div>
+        <input type="number" class="input-field" id="decimalInput" placeholder="Dezimal" />
+        <button onclick="checkAnswer()">Überprüfen</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function getRandomBinary() {
+            return Math.floor(Math.random() * 256).toString(2).padStart(8, '0');
+        }
+
+        function binaryToDecimal(binary) {
+            return parseInt(binary, 2);
+        }
+
+        function checkAnswer() {
+            const binaryNumber = document.getElementById('binaryNumber').innerText;
+            const userAnswer = document.getElementById('decimalInput').value;
+            const correctAnswer = binaryToDecimal(binaryNumber);
+
+            if (userAnswer == correctAnswer) {
+                document.getElementById('result').innerText = "Richtig!";
+            } else {
+                document.getElementById('result').innerText = `Falsch! Die richtige Antwort ist ${correctAnswer}.`;
+            }
+        }
+
+        document.getElementById('binaryNumber').innerText = getRandomBinary();
+    </script>
+</body>
+</html>
